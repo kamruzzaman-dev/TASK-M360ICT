@@ -18,8 +18,8 @@ type SingInType = {
 };
 
 const SignInForm = () => {
-  const [checked, setChecked] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
+  const [checked, setChecked] = useState<boolean>(false);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
   const [form] = Form.useForm();
 
   const onFinish = (value: SingInType) => {
