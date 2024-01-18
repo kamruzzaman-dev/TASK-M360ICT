@@ -1,6 +1,7 @@
 import Navbar from "../../component/Navbar";
 import SignUpTitle from "../../component/SignUpTitle";
 import SocialSignUP from "../../component/SocialSignup";
+import SignInForm from "../../component/form/auth/SignInForm";
 
 const SignIn = () => {
   return (
@@ -11,6 +12,7 @@ const SignIn = () => {
         message="Welcome back, you’ve been missed!"
       />
       <SocialSignUP />
+      <SignInForm />
     </div>
   );
 };
