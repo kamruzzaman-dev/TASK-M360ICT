@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Divider } from "antd";
 import google from "../../../public/assets/icons/google.svg";
 import iphone from "../../../public/assets/icons/iphone.svg";
 const SocialSignUP = () => {
@@ -54,6 +54,17 @@ const SocialSignUP = () => {
                     Sign In with Apple ID
                 </Button>
             </div>
+            <Divider
+                style={{
+                    fontSize: "20px",
+                    fontWeight: "500",
+                    color: "#B0B7C3",
+                    marginTop: "30px",
+                    marginBottom: "30px",
+                }}
+            >
+                OR
+            </Divider>
         </div>
     );
 };
