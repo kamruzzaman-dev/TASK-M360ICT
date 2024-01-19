@@ -5,8 +5,10 @@ import DashboardLayout from "../pages/dashboardLayout";
 import Dashboard from "../component/dashboard/dashboardPages/dashboard";
 import Sales from "../component/dashboard/sales";
 import User from "../component/dashboard/user";
+import App from "../App";
 
 const router = createBrowserRouter([
+  { path: "/", element: <App /> },
   { path: "/sign-in", element: <SignIn /> },
   { path: "/sign-up", element: <SignUp /> },
   {
