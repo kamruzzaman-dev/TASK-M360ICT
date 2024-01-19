@@ -23,6 +23,12 @@ const MenuItems = () => {
             path: "/dashboard/users",
         },
         {
+            id: 435,
+            icon: users,
+            label: "Users Create",
+            path: "/dashboard/users-create",
+        },
+        {
             id: 3,
             icon: sales,
             label: "Sales",

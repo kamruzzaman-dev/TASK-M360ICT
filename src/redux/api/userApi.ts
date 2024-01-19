@@ -33,7 +33,14 @@ const userApi = api.injectEndpoints({
       },
       providesTags: ["user"],
     }),
+    CreateUser: builder.mutation({
+      query: (data) => ({
+        url: `/api/users`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useGetUserQuery, useCreateUserMutation } = userApi;

@@ -6,6 +6,7 @@ import Dashboard from "../pages/dashboard";
 import Sales from "../pages/dashboard/sales";
 import User from "../pages/dashboard/user";
 import App from "../App";
+import NewUser from "../pages/dashboard/user/newUser";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/users",
         element: <User />,
+      },
+      {
+        path: "/dashboard/users-create",
+        element: <NewUser />,
       },
       {
         path: "/dashboard/sales",
