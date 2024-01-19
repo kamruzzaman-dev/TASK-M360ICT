@@ -7,7 +7,7 @@ const { Content } = Layout;
 
 
 
-const Dashboard = () => {
+const DashboardLayout = () => {
 
     return (
         <div className="main-container">
@@ -33,4 +33,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default DashboardLayout;

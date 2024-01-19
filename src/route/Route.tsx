@@ -1,17 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 import SignIn from "../pages/Auth/SignIn";
 import SignUp from "../pages/Auth/SignUP";
-import Dashboard from "../pages/dashboard";
+import DashboardLayout from "../pages/dashboardLayout";
+import Dashboard from "../component/dashboard/dashboardPages/dashboard";
+import Sales from "../component/dashboard/sales";
 
 const router = createBrowserRouter([
   { path: "/sign-in", element: <SignIn /> },
   { path: "/sign-up", element: <SignUp /> },
   {
-    path: "/dashboard", element: <Dashboard />,
+    path: "/dashboard", element: <DashboardLayout />,
     children: [
       {
         path: "/dashboard",
-        element: <SignUp />,
+        element: <Dashboard />,
       },
       {
         path: "/dashboard/users",
@@ -19,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/sales",
-        element: <SignUp />,
+        element: <Sales />,
       },
     ],
   },
