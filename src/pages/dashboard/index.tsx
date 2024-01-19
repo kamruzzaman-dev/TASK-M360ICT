@@ -1,6 +1,7 @@
 import { Layout } from "antd";
 import MenuItems from "../../component/dashboard/Menu";
 import { Outlet } from "react-router-dom";
+import DashboardHeader from "../../component/dashboard/dashboardHeader";
 
 const { Content } = Layout;
 
@@ -13,6 +14,7 @@ const Dashboard = () => {
             <Layout style={{ backgroundColor: "white" }}>
                 <MenuItems />
                 <Layout style={{ background: "white" }}>
+                    <DashboardHeader />
                     <Content
                         style={{
                             marginTop: "48px",
