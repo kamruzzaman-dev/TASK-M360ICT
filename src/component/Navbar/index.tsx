@@ -1,8 +1,9 @@
-import paper from "../../../public/assets/icons/paper.svg";
+// import paper from "../../../public/assets/icons/paper.svg";
 import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import { useState } from "react";
+import Logo from "../logo";
 
 const items: MenuProps["items"] = [
     {
@@ -32,26 +33,7 @@ const Navbar = () => {
                     alignItems: "center",
                 }}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                    }}
-                >
-                    <div>
-                        <img src={paper} alt="paper" />
-                    </div>
-                    <p
-                        style={{
-                            marginLeft: "12px",
-                            fontSize: "28px",
-                            fontWeight: 700,
-                            color: "#4E5D78",
-                        }}
-                    >
-                        Stack
-                    </p>
-                </div>
+                <Logo />
                 <Dropdown menu={{ items }} trigger={["click"]}>
                     <a
                         style={{
