@@ -4,6 +4,7 @@ import SignUp from "../pages/Auth/SignUP";
 import DashboardLayout from "../pages/dashboardLayout";
 import Dashboard from "../component/dashboard/dashboardPages/dashboard";
 import Sales from "../component/dashboard/sales";
+import User from "../component/dashboard/user";
 
 const router = createBrowserRouter([
   { path: "/sign-in", element: <SignIn /> },
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/users",
-        element: <SignIn />,
+        element: <User />,
       },
       {
         path: "/dashboard/sales",
