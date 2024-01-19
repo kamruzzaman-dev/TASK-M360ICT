@@ -18,6 +18,7 @@ const Logo = () => {
                 style={{
                     marginLeft: "12px",
                     fontSize: "28px",
+                    fontFamily: "Inter",
                     fontWeight: 700,
                     color: "#4E5D78",
                 }}
