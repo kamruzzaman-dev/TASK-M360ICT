@@ -1,13 +1,28 @@
 import { Table } from "antd";
 import type { TableColumnsType } from "antd";
 import { useState } from "react";
+import { useGetUserQuery } from "../../../redux/api/userApi";
+import optionIcon from "../../../../public/assets/icons/more.svg";
+
+interface UserData {
+    page: number;
+    per_page: number;
+    total: number;
+    total_pages: number;
+    data: DataType[];
+    support: {
+        url: string;
+        text: string;
+    };
+}
+
 
 interface DataType {
     id?: number;
-    name: string;
-    image?: string;
+    first_name: string;
+    last_name?: string;
+    avatar?: string;
     email: string;
-    options: string;
 }
 
 const columns: TableColumnsType<DataType> = [
@@ -16,15 +31,15 @@ const columns: TableColumnsType<DataType> = [
         dataIndex: "id",
         key: "id",
         width: 100,
-        render: (_text, _record, index) => {
-            return `${index + 1}`;
+        render: (id) => {
+            return `${id}`;
         },
     },
     {
         title: "USER",
-        dataIndex: "name",
+        dataIndex: "first_name",
         key: "id",
-        render: (name: string, record: DataType) => (
+        render: (first_name: string, record: DataType) => (
             <div
                 style={{
                     display: "flex",
@@ -35,11 +50,13 @@ const columns: TableColumnsType<DataType> = [
                     style={{
                         borderRadius: "15px",
                         marginRight: "20px",
+                        width: "60px",
+                        height: "60px"
                     }}
-                    src={record.image}
+                    src={record.avatar}
                     alt=""
                 />
-                {name}
+                {first_name}&nbsp;{record.last_name}
             </div>
         ),
     },
@@ -55,44 +72,33 @@ const columns: TableColumnsType<DataType> = [
     {
         title: "OPTIONS",
         dataIndex: "options",
-        key: "options",
-        render: (options: string) => {
-            return <img src={options} alt="" />
+        key: "id",
+        render: () => { // TODO: api calling
+            return <img src={optionIcon} alt="" />
         },
     },
 ];
 
-const fakeData: DataType[] = [
-    {
-        name: "john",
-        image: "../../../../public/assets/images/image.png",
-        email: "john@email",
-        options: "../../../../public/assets/icons/more.svg"
-    },
-    {
-        name: "zaman",
-        image: "../../../../public/assets/images/image.png",
-        email: "zaman@gmail.com",
-        options: "../../../../public/assets/icons/more.svg"
-    }
-]
 
 const UserTableList: React.FC = () => {
 
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [currentLimit, setCurrentLimit] = useState<number>(7);
+    const { data }: { data: UserData } = useGetUserQuery({ page: currentPage, per_page: currentLimit })
 
+    console.log(data);
     return (
         <div>
             <Table bordered={false}
                 columns={columns}
-                dataSource={fakeData}
+                dataSource={data?.data}
                 scroll={{ x: true }}
                 pagination={{
                     current: currentPage,
                     pageSize: currentLimit,
                     defaultCurrent: 1,
                     pageSizeOptions: ["5", "10", "20"],
+                    total: data?.total,
                     onChange: (page, pageSize) => {
                         setCurrentPage(page);
                         setCurrentLimit(pageSize);

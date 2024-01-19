@@ -1,21 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const UserApi = createApi({
+export const api = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `https://reqres.in`,
   }),
   tagTypes: ["user"],
-  endpoints: (builder: any) => ({
-    login: builder.mutation({
-      query: (body: any) => ({
-        url: `/login`,
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: ["user"],
-    }),
-  }),
+  endpoints: () => ({}),
 });
-
-export const { useLoginMutation } = UserApi;
