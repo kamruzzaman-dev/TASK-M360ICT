@@ -1,4 +1,4 @@
-import Title from "../../title/Index";
+import Title from "../../../component/title/Index";
 
 const Sales = () => {
     return (

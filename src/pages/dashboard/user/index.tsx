@@ -1,4 +1,4 @@
-import Title from "../../title/Index";
+import Title from "../../../component/title/Index";
 import UserTableList from "./UserTableList";
 
 const User = () => {
