@@ -12,59 +12,7 @@ interface DataType {
     email: string;
 }
 
-const columns: TableColumnsType<DataType> = [
-    {
-        title: "#ID",
-        dataIndex: "id",
-        key: "id",
-        width: 100,
-        render: (id) => {
-            return `${id}`;
-        },
-    },
-    {
-        title: "USER",
-        dataIndex: "first_name",
-        key: "id",
-        render: (first_name: string, record: DataType) => (
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-                <img
-                    style={{
-                        borderRadius: "15px",
-                        marginRight: "20px",
-                        width: "60px",
-                        height: "60px"
-                    }}
-                    src={record.avatar}
-                    alt=""
-                />
-                {first_name}&nbsp;{record.last_name}
-            </div>
-        ),
-    },
 
-    {
-        title: "EMAIL",
-        dataIndex: "email",
-        key: "email",
-        render: (email: string) => {
-            return <p>{email}</p>
-        },
-    },
-    {
-        title: "OPTIONS",
-        dataIndex: "options",
-        key: "id",
-        render: () => { // TODO: api calling
-            return <img src={optionIcon} alt="" />
-        },
-    },
-];
 
 
 const UserTableList: React.FC = () => {
@@ -74,6 +22,62 @@ const UserTableList: React.FC = () => {
     const { data, isLoading } = useGetUserQuery({ page: currentPage, per_page: currentLimit });
     const userData = data && data.response
 
+    const columns: TableColumnsType<DataType> = [
+        {
+            title: "#ID",
+            dataIndex: "id",
+            key: "id",
+            width: 100,
+            render: (id) => {
+                return `${id}`;
+            },
+        },
+        {
+            title: "USER",
+            dataIndex: "first_name",
+            key: "id",
+            render: (first_name: string, record: DataType) => (
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                    }}
+                >
+                    <img
+                        style={{
+                            borderRadius: "15px",
+                            marginRight: "20px",
+                            width: "60px",
+                            height: "60px"
+                        }}
+                        src={record.avatar}
+                        alt=""
+                    />
+                    {first_name}&nbsp;{record.last_name}
+                </div>
+            ),
+        },
+
+        {
+            title: "EMAIL",
+            dataIndex: "email",
+            key: "email",
+            render: (email: string) => {
+                return <p>{email}</p>
+            },
+        },
+        {
+            title: "OPTIONS",
+            dataIndex: "options",
+            key: "id",
+            render: () => { // TODO: api calling
+                return <div style={{ cursor: "pointer" }}>
+                    <img src={optionIcon} alt="" />
+                </div>
+
+            },
+        },
+    ];
 
     return (
         <div>
