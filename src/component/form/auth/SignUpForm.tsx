@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import SecurityChecking from "../../SecurityChecking";
 import { useSignUpUserMutation } from "../../../redux/api/auth";
-import { storeUserInfo } from "../../../AuthService";
 import { useNavigate } from "react-router-dom";
 
 type SingUpType = {
@@ -42,25 +41,26 @@ const SignUpForm = () => {
         }
 
         // api here
-        console.log(value, data);
+        // console.log(value, data);
 
         const newData = {
             email: data.email,
             password: data.password
         }
 
-        await addSignUp(newData).then(() => {
-
-        });
         try {
             const res = await addSignUp(newData).unwrap();
 
             // console.log(res);
             if (res?.token) {
-                storeUserInfo({ accessToken: res?.token });
+                // storeUserInfo({ accessToken: res?.token });
                 navigate("/sign-in");
                 message.success("Sign Up Successful!");
                 form.resetFields();
+            }
+
+            if (res?.error) {
+                message.error(res?.error);
             }
 
         } catch (err) {

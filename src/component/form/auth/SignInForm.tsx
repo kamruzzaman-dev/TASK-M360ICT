@@ -9,8 +9,10 @@ import {
 } from "antd";
 import at from "../../../../public/assets/icons/at.svg";
 import lock from "../../../../public/assets/icons/lock.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { storeUserInfo } from "../../../AuthService";
+import { useSignInMutation } from "../../../redux/api/auth";
 
 type SingInType = {
   email: string;
@@ -18,19 +20,42 @@ type SingInType = {
 };
 
 const SignInForm = () => {
+  const navigate = useNavigate();
   const [checked, setChecked] = useState<boolean>(false);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [form] = Form.useForm();
+  const [addSignIn] = useSignInMutation()
 
-  const onFinish = (value: SingInType) => {
+  const onFinish = async (value: SingInType) => {
     const data = { ...value, checked };
 
+    if (!checked) {
+      message.error("please mark check box!");
+      return
+    }
     // api will add here
-    console.log(data);
+
+    const newData = {
+      email: data.email,
+      password: data.password
+    }
 
 
-    message.success("Sign In Successful!");
-    form.resetFields();
+    try {
+      const res = await addSignIn(newData).unwrap();
+
+      // console.log(res);
+      if (res?.token) {
+        storeUserInfo({ accessToken: res?.token });
+        navigate("/dashboard");
+        message.success("Sign Up Successful!");
+        form.resetFields();
+      }
+
+    } catch (err) {
+      message.error("something wrong!");
+      console.error(err);
+    }
   };
 
   const onFinishFailed = () => {
