@@ -24,7 +24,7 @@ type SingUpType = {
 
 const SignUpForm = () => {
     const navigate = useNavigate();
-
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [checked, setChecked] = useState<boolean>(false);
     const [isTyping, setIsTyping] = useState<boolean>(false);
 
@@ -50,6 +50,7 @@ const SignUpForm = () => {
 
         try {
             const res = await addSignUp(newData).unwrap();
+            setIsLoading(true);
 
             // console.log(res);
             if (res?.token) {
@@ -57,15 +58,18 @@ const SignUpForm = () => {
                 navigate("/sign-in");
                 message.success("Sign Up Successful!");
                 form.resetFields();
+                setIsLoading(false);
             }
 
             if (res?.error) {
                 message.error(res?.error);
+                setIsLoading(false);
             }
 
         } catch (err) {
             message.error("something wrong!");
             console.error(err);
+            setIsLoading(false);
         }
 
     };
@@ -222,10 +226,11 @@ const SignUpForm = () => {
                             fontWeight: 500,
                             color: "white",
                         }}
+                        disabled={isLoading}
                         type="primary"
                         htmlType="submit"
                     >
-                        Sign Up
+                        {isLoading ? "Loading..." : "Sign Up"}
                     </Button>
                 </Space>
             </Form.Item>

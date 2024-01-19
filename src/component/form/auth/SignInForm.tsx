@@ -21,6 +21,7 @@ type SingInType = {
 
 const SignInForm = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [form] = Form.useForm();
@@ -43,16 +44,23 @@ const SignInForm = () => {
 
     try {
       const res = await addSignIn(newData).unwrap();
-
+      setIsLoading(true)
       // console.log(res);
       if (res?.token) {
+        setIsLoading(false);
         storeUserInfo({ accessToken: res?.token });
-        navigate("/dashboard");
+        navigate("/dashboard/users");
         message.success("Sign Up Successful!");
         form.resetFields();
       }
 
+      if (res?.error) {
+        message.error(res?.error);
+        setIsLoading(false);
+      }
+
     } catch (err) {
+      setIsLoading(false);
       message.error("something wrong!");
       console.error(err);
     }
@@ -174,8 +182,9 @@ const SignInForm = () => {
             }}
             type="primary"
             htmlType="submit"
+            disabled={isLoading}
           >
-            Sign In
+            {isLoading ? "Loading..." : "Sign In"}
           </Button>
         </Space>
       </Form.Item>
