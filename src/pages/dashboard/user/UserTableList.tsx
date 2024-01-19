@@ -97,6 +97,10 @@ const UserTableList: React.FC = () => {
                         setCurrentLimit(size);
                     },
                     showSizeChanger: false,
+                    style: {
+                        float: 'left',
+                        marginLeft: '20px',
+                    }
                 }} />
         </div>
     );
