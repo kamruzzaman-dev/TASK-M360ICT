@@ -2,14 +2,14 @@ import { api } from "./apiSlice";
 
 const AuthApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    signupUser: builder.mutation({
+    signUpUser: builder.mutation({
       query: (data) => ({
-        url: ``,
+        url: `/api/register`,
         method: "POST",
         body: data,
       }),
     }),
-    signin: builder.mutation({
+    signIn: builder.mutation({
       query: (data) => ({
         url: ``,
         method: "POST",
@@ -19,4 +19,4 @@ const AuthApi = api.injectEndpoints({
   }),
 });
 
-export const { useSigninMutation, useSignupUserMutation } = AuthApi;
+export const { useSignInMutation, useSignUpUserMutation } = AuthApi;
